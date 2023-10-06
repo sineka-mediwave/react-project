@@ -1,6 +1,6 @@
 function Input({ name, type, label, placeholder, onChange, value, onBlur }) {
     return (
-      <div>
+      <div className="inputDiv">
         <label>{label}</label>
         <input
           name={name}

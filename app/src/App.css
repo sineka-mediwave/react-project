@@ -1,13 +1,19 @@
+body {
+  background-color: #282c34;
+}
+
 .App {
   text-align: center;
-  background-color: #282c34;
-  min-height: 100vh;
 }
 
 .App-header {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  width: 420px;
+  margin: 0 auto;
   color: white;
+}
+
+.inputDiv {
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
 }

@@ -29,14 +29,23 @@ function App() {
                 type="number"
                 name="ratings"
                 id="ratings"
+                label="Enter the rating"
                 placeholder="rate the movie"
               />
 
               <Input
                 type="text"
                 name="description"
-                placeholder="write about movie"
                 id="description"
+                label= "Description for the movie"
+                placeholder="write about movie"
+              />
+              <Input
+                type="link"
+                name="imageUrl"
+                id="imageUrl"
+                label= "Poster of the Movie"
+                placeholder="paste image url"
               />
 
               <button type="submit" >Submit</button>
