@@ -1,14 +1,28 @@
-import './App.css'
+import { useState } from "react";
+import MyList from "./Components/MyList";
+import AddForm from "./Components/AddForm";
+import "./App.css";
 
-function App() {
+const App = () => {
+  const [value, setValue] = useState([
+    {
+      id: 1,
+      value: "choco",
+    },
+    {
+      id: 2,
+      value: "iceCream",
+    },
+  ]);
 
   return (
     <>
-    
-      <h1>Hello</h1>
-      
-    </>
-  )
-}
+      <h1>Likes App</h1>
+      <AddForm />
 
-export default App
+      <MyList />
+    </>
+  );
+};
+
+export default App;
