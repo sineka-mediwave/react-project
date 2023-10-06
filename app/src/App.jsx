@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import MyList from "./Components/MyList";
 import AddForm from "./Components/AddForm";
 import "./App.css";
@@ -11,16 +11,22 @@ const App = () => {
     },
     {
       id: 2,
-      value: "iceCream",
+      value: "chocolate",
     },
   ]);
+
+  function handleAdd(payload) {
+    console.log(payload);
+    const temp = [...value];
+    temp.push(payload);
+    setValue(temp);
+  }
 
   return (
     <>
       <h1>Likes App</h1>
-      <AddForm />
-
-      <MyList />
+      <AddForm handleAdd={handleAdd} />
+      <MyList listItem={value} />
     </>
   );
 };

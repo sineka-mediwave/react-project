@@ -1,19 +1,38 @@
-const AddForm = () => {
+import { useState } from "react";
+
+const AddForm = (props) => {
+  //   const { value } = props;
+  //   console.log(value);
+  const { handleAdd } = props;
+  const [data, setData] = useState("");
+
   const handleChange = (e) => {
-    console.log(e.target.value);
-    setValue(...value, e.target.value);
+    setData(e.target.value);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(value);
+    // setData(() => {
+    //   const value = {
+    //     id: new Date().getTime(),
+    //     title: data,
+    //   };
+    //   console.log(value);
+    //   return [...data, value];
+    // });
+    const obj = {
+      id: new Date().getTime(),
+      value: data,
+    };
+    handleAdd(obj);
+    setData("");
   };
 
   return (
     <form onSubmit={handleSubmit}>
       <label htmlFor="items">What do you like? </label>
-      <input type="text" id="items" onChange={handleChange} />
-      <button>Add</button>
+      <input type="text" id="items" value={data} onChange={handleChange} />
+      <button type="sumbit">Add</button>
     </form>
   );
 };
