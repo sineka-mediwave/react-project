@@ -1,6 +1,7 @@
 import "./App.css";
 import { useState } from "react";
-import Input from "./Components/Input";
+import {Input, Button} from "./Components";
+import * as Yup from 'yup';
 
 function App() {
   const initialValues = {
@@ -9,7 +10,30 @@ function App() {
     ratings: 0,
     url: "",
   };
-  const [] = useState(initialValues);
+
+  const validationSchema = Yup.object().shape({
+    title: Yup.string().required('Title required'),
+    description: Yup.string().required('Description required').min(5, "Description should be at least 5 characters"),
+    ratings: Yup.number().required('Ratings is required').max(10, "Rating cannot be greater than 10"),
+    url: Yup.string().url('Enter a valid URL').required('URL is required'),
+  });
+  const [state, setState] = useState(initialValues);
+  const [movies, setMovies] = useState([]);
+  const [formErrors, setFormErrors] = useState({});
+
+  const handleChange = (e) => {
+    setState({
+      ...state,
+      [e.target.name]: e.target.value,
+    });
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(state) 
+    setMovies()
+    console.log(movies)
+  }
   return (
     <div className="App">
       <main className="App-header">
@@ -21,7 +45,7 @@ function App() {
                 id="title"
                 label="Enter Movie Name"
                 placeholder="movie Name"
-                // onChange = {(e) => setFieldValue('title', e.target.value)}
+                onChange = {handleChange}
                 // onBlur = {()=> (...touched, "title":true)}
               />
 
@@ -31,6 +55,8 @@ function App() {
                 id="ratings"
                 label="Enter the rating"
                 placeholder="rate the movie"
+                onChange = {handleChange}
+
               />
 
               <Input
@@ -39,6 +65,8 @@ function App() {
                 id="description"
                 label= "Description for the movie"
                 placeholder="write about movie"
+                onChange = {handleChange}
+
               />
               <Input
                 type="link"
@@ -46,9 +74,10 @@ function App() {
                 id="imageUrl"
                 label= "Poster of the Movie"
                 placeholder="paste image url"
-              />
+                onChange = {handleChange}
 
-              <button type="submit" >Submit</button>
+              />
+              <button type="submit" onClick={handleSubmit}>Create Card</button>
             </form>
       </main>
     </div>
