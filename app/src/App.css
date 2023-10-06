@@ -1,29 +1,6 @@
-body {
-  background-color: #282c34;
-}
-button {
-  margin: 20px;
-  padding: 5px 10px;
-  border-radius: 8px;
-}
-.App {
-  text-align: center;
-}
-
-.App-header {
-  width: 420px;
+#root {
+  max-width: 1280px;
   margin: 0 auto;
-  color: white;
-}
-
-.inputDiv {
-  margin-bottom: 10px;
-  display: flex;
-  justify-content: space-between;
-}
-
-.cardDiv {
-  padding: 20px;
-  background-color: #526d82;
-  border-radius: 10px;
+  padding: 2rem;
+  text-align: center;
 }
