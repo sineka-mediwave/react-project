@@ -1,10 +1,10 @@
-const  Card = ({values}) => {
+const  Card = (movies) => {
     return(
-    <div>
-      <h3>{values.title}</h3>
-      <p>Description: {values.description}</p>
-      <p>Ratings: {values.ratings}</p>
-      <img src={values.imageUrl} alt="Image" />
+    <div className="cardDiv">
+      <h3>{movies.title}</h3>
+      <p>Description: {movies.description}</p>
+      <p>Ratings: {movies.ratings}</p>
+      <img src={movies.imageUrl} alt="Image" />
     </div>)
 }
 export default Card;

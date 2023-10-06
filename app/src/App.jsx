@@ -1,6 +1,6 @@
 import "./App.css";
 import { useState } from "react";
-import {Input, Button} from "./Components";
+import {Input, Card} from "./Components";
 import * as Yup from 'yup';
 
 function App() {
@@ -19,7 +19,8 @@ function App() {
   });
   const [state, setState] = useState(initialValues);
   const [movies, setMovies] = useState([]);
-  const [formErrors, setFormErrors] = useState({});
+  
+  // const [formErrors, setFormErrors] = useState({});
 
   const handleChange = (e) => {
     setState({
@@ -31,9 +32,12 @@ function App() {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(state) 
-    setMovies()
+    setMovies([...movies, state]);
     console.log(movies)
+    setState(movies);
+    
   }
+
   return (
     <div className="App">
       <main className="App-header">
@@ -79,6 +83,10 @@ function App() {
               />
               <button type="submit" onClick={handleSubmit}>Create Card</button>
             </form>
+            <div className="CardDiv">
+              {movies.map((movies, index)=> 
+              <Card key={index} value={movies}></Card>)}
+            </div>
       </main>
     </div>
   );
