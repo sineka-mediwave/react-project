@@ -1,12 +1,17 @@
-# Movie App
-
-created the form inputs and sumbit button
-
-## map function
+# My IMDB
 
 ```
-
-{movies.map((movies, index)=>
-<Card key={index} value={movies}></Card>)}
-
+const myImdb = {
+    id: "1",
+    title: "myImdb",
+    navigation: ["addMovie", "home"],
+    movie: [
+      {
+        id:"uuid",
+        name: "title",
+        year: "realese-date",
+        image: "https://image/url.jpg",
+        rating: "dropdown",
+    }],
+}
 ```
