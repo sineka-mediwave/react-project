@@ -3,30 +3,35 @@ import MyList from "./Components/MyList";
 import AddForm from "./Components/AddForm";
 import "./App.css";
 
+function setToLocalStorage(value) {
+  localStorage.setItem("My-favourites", JSON.stringify(value));
+}
+
+function getFromLocalStorage() {
+  return JSON.parse(localStorage.getItem("My-favourites")) || [];
+}
+
 const App = () => {
-  const [value, setValue] = useState([
-    {
-      id: 1,
-      value: "choco",
-    },
-    {
-      id: 2,
-      value: "chocolate",
-    },
-  ]);
+  const [value, setValue] = useState([]);
+
+  useEffect(() => setValue(getFromLocalStorage()), []);
 
   function handleAdd(payload) {
-    console.log(payload);
-    const temp = [...value];
-    temp.push(payload);
-    setValue(temp);
+    const newValue = [...value, payload];
+    setValue(newValue);
+    setToLocalStorage(newValue);
+  }
+
+  function handleFilter(newArray) {
+    setValue(newArray);
+    setToLocalStorage(newArray);
   }
 
   return (
     <>
       <h1>Likes App</h1>
       <AddForm handleAdd={handleAdd} />
-      <MyList listItem={value} />
+      <MyList listItem={value} handleFilter={handleFilter} />
     </>
   );
 };
