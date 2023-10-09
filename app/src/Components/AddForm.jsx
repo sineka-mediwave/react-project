@@ -23,6 +23,7 @@ const AddForm = (props) => {
     const obj = {
       id: new Date().getTime(),
       value: data,
+      edit: false,
     };
     handleAdd(obj);
     setData("");
