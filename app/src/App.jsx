@@ -2,10 +2,12 @@ import { useState } from "react";
 import "./App.css";
 
 const App = () => {
+  const navigation = ["addMovie", "home"];
   const myImdb = {
     id: "1",
     title: "My IMDB",
     navigation: ["addMovie", "home"],
+    currentPage: "home",
     home: [
       {
         id: "1",
@@ -24,12 +26,27 @@ const App = () => {
         rating: "countStar",
       },
     ],
-    movieForm: [],
+  };
+
+  const Home = () => {
+    return (
+      <>
+        <Navigation />
+      </>
+    );
   };
   const [imdb, setimbd] = useState(myImdb);
   return (
     <>
       <h1>{imdb.title}</h1>
+      <div>
+        <nav>
+          <ul>
+            <li onClick={() => navigateTo("home")}>Home</li>
+          </ul>
+        </nav>
+        {currentPage === "home" && <Home />}
+      </div>
     </>
   );
 };
