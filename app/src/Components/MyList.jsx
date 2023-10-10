@@ -1,9 +1,7 @@
 import { useState } from "react";
-
 const MyList = (props) => {
   // console.log(props.value);
   const { listItem, handleFilter, isEditUpdate, updateChange } = props;
-  const [editValue, setEditValue] = useState("");
 
   function handleDelete(id) {
     console.log(id);
@@ -12,16 +10,29 @@ const MyList = (props) => {
   }
 
   function handleEdit(id) {
-    // setIsEdit(true);
-    const index = listItem.findIndex((item) => item.id == id);
-    const editForm = listItem[index];
-
-    isEditUpdate(editForm);
+    isEditUpdate(id);
   }
   const handleSave = (id, value) => {
-    // updateChange(id);
-    console.log(id);
-    console.log(value);
+    updateChange(id, value);
+  };
+
+  const EditCard = (props) => {
+    const { item } = props;
+    const [editValue, setEditValue] = useState(item.value);
+    const handleChange = (e) => setEditValue(e.target.value);
+
+    return (
+      <>
+        <input
+          id={item.id}
+          type="text"
+          placeholder={item.value}
+          value={editValue}
+          onChange={handleChange}
+        />
+        <button onClick={() => handleSave(item.id, editValue)}>Update</button>
+      </>
+    );
   };
 
   return (
@@ -29,21 +40,8 @@ const MyList = (props) => {
       {listItem.map((item) => {
         return (
           <div key={item.id}>
-            {item.edit ? (
-              <>
-                <input
-                  type="text"
-                  placeholder={item.value}
-                  value={editValue}
-                  onChange={(e) => setEditValue(e.target.value)}
-                />
-                <button
-                  onClick={() => handleSave(item.id, editValue)}
-                  type="submit"
-                >
-                  Save
-                </button>
-              </>
+            {item.isEdit ? (
+              <EditCard item={item} />
             ) : (
               <>
                 <div>

@@ -13,7 +13,6 @@ function getFromLocalStorage() {
 
 const App = () => {
   const [value, setValue] = useState([]);
-  const [update, setUpdate] = useState({});
 
   useEffect(() => setValue(getFromLocalStorage()), []);
 
@@ -28,14 +27,19 @@ const App = () => {
     setToLocalStorage(newArray);
   }
 
-  function isEditUpdate(obj) {
-    console.log(obj);
-    setUpdate((obj.edit = true));
+  function isEditUpdate(id) {
+    const index = value.findIndex((item) => item.id == id);
+    const editForm = value[index];
+    editForm.isEdit = true;
+    setToLocalStorage(value);
   }
 
-  function updateChange(objId) {
-    const index = value.findIndex((item) => item.id == objId);
-    const editForm = listItem[index];
+  function updateChange(id, editValue) {
+    const index = value.findIndex((item) => item.id == id);
+    const editForm = value[index];
+    editForm.value = editValue;
+    editForm.isEdit = false;
+    setToLocalStorage(value);
   }
   return (
     <>
